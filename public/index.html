@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="backdrop" style="display: none" onclick="closeCode()"></div>
+    <form id="login">
+      <input type="text" id="email" value="mshirhaan@gmail.com">
+      <input  type="text" id="password" value="123456">
+      <button type="submit" onclick="onLogin(event)">Login</button>
+    </form>
+
+    <form id="signup">
+      <input type="text" id="regemail" value="mshirhaan@gmail.com">
+      <input  type="text" id="regpassword" value="123456">
+      <input  type="text" id="regusername" value="mshirhaan">
+      <button type="submit" onclick="register(event)">Sign Up</button>
+    </form>
+
+    <table id="table">
+      <tr>
+        <th>ID</th>
+        <th>Category</th>
+        <th>Problem Link</th>
+        <th>Notes</th>
+        <th>Code</th>
+        <th>Status</th>
+        <th>Submit</th>
+      </tr>
+    </table>
+    <div id="code-container" style="display: none">
+      <pre>
+        <code id="code-block">
+        </code>
+      </pre>
+      <button onclick="closeCode()">Close</button>
+    </div>
+
+    <button onclick="get()">Save</button>
+
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
