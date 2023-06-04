@@ -5,47 +5,176 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div id="backdrop" style="display: none" onclick="closeCode()"></div>
-    <form id="login">
-      <input type="text" id="email" value="mshirhaan@gmail.com">
-      <input  type="text" id="password" value="123456">
-      <button type="submit" onclick="onLogin(event)">Login</button>
-    </form>
+    <div class="container-fluid">
+      <ul class="nav nav-tabs" id="nav-tabs">
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            id="login-tab"
+            aria-current="page"
+            href="#"
+            onclick="toggleAuth()"
+            >Login</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="signup-tab" href="#" onclick="toggleAuth()"
+            >Signup</a
+          >
+        </li>
+      </ul>
 
-    <form id="signup">
-      <input type="text" id="regemail" value="mshirhaan@gmail.com">
-      <input  type="text" id="regpassword" value="123456">
-      <input  type="text" id="regusername" value="mshirhaan">
-      <button type="submit" onclick="register(event)">Sign Up</button>
-    </form>
+      <div class="card" id="login">
+        <div class="card-body">
+          <form>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email address</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                value="mshirhaan@gmail.com"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input
+                type="password"
+                id="password"
+                value="123456"
+                class="form-control"
+              />
+            </div>
 
-    <table id="table">
-      <tr>
-        <th>ID</th>
-        <th>Category</th>
-        <th>Problem Link</th>
-        <th>Notes</th>
-        <th>Code</th>
-        <th>Status</th>
-        <th>Submit</th>
-      </tr>
-    </table>
-    <div id="code-container" style="display: none">
-      <pre>
-        <code id="code-block">
-        </code>
-      </pre>
-      <button onclick="closeCode()">Close</button>
+            <button
+              type="submit"
+              onclick="onLogin(event)"
+              class="btn btn-primary"
+            >
+              Login
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="card" id="signup">
+        <div class="card-body">
+          <form>
+            <div class="mb-3">
+              <label for="regemail" class="form-label">Email address</label>
+              <input
+                type="email"
+                class="form-control"
+                id="regemail"
+                value="mshirhaan@gmail.com"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="regpassword" class="form-label">Password</label>
+              <input
+                type="password"
+                id="regpassword"
+                value="123456"
+                class="form-control"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="regusername" class="form-label">Username</label>
+              <input
+                type="text"
+                id="regusername"
+                value="mshirhaan"
+                class="form-control"
+              />
+            </div>
+
+            <button
+              type="submit"
+              onclick="register(event)"
+              class="btn btn-primary"
+            >
+              Signup
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <table class="table table-dark table-hover" id="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Category</th>
+            <th>Problem Link</th>
+            <th>Notes</th>
+            <th>Code</th>
+            <th>Status</th>
+            <th>Submit</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Code</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body" id="code-modal-body"></div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="button" class="btn btn-primary">
+                Save changes
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn btn-primary" id="add-problem" onclick="addProblem()">
+        Add Problem
+      </button>
+      <button class="btn btn-primary" id="logout" onclick="onLogout()">
+        Logout
+      </button>
+
+      <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-database.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
+      <script src="index.js"></script>
     </div>
-
-    <button onclick="get()">Save</button>
-
-    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-database.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
-    <script src="index.js"></script>
   </body>
 </html>
