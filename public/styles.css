@@ -2,36 +2,11 @@ body {
   margin: 0;
 }
 
-#code-container {
-  background-color: #f1f1f1;
-  padding: 10px;
-  position: relative;
-  z-index: 1;
-  margin: 50px;
-  max-height: 200px;
-}
-
-#code-block {
-  font-family: Consolas, monospace;
-  font-size: 14px;
-  overflow: scroll;
-}
-
-table,
-th,
-td {
-  border: 1px solid black;
-  border-collapse: collapse;
-}
 
 table {
     display: none;
-  width: 100%;
 }
 
-#backdrop {
-  position: absolute;
-  height: 100vh;
-  width: 100vw;
-  background-color: rgb(0 0 0 / 79%)
+#login, #signup , #nav-tabs{
+    display: none;
 }
